@@ -1,21 +1,51 @@
 <odoo>
   <data>
     <record id="to_do_list_tree_view" model="ir.ui.view">
-      <field name="name">to_do_list.titit.view.tree</field>
-      <field name="model">to_do_list.titit</field>
+      <field name="name">to_do_list.task.view.tree</field>
+      <field name="model">to_do_list.task</field>
       <field name="arch" type="xml">
         <tree string="Judul">
           <field name="check" />
           <field name="title" />
           <field name="description" />
+          <field name="date_creation" />
         </tree>
+      </field>
+    </record>
+    <!-- <record id="to_do_list_kanban_view" model="ir.ui.view">
+      <field name="name">to_do_list.task.view.kanban</field>
+      <field name="model">to_do_list.task</field>
+      <field name="arch" type="xml">
+        <kanban string="Judul" default_group_by="check">
+          <field name="check" />
+          <field name="title" />
+          <field name="description" />
+          <field name="date_creation" />
+        </kanban>
+      </field>
+    </record> -->
+    <record id="to_do_list_view_kanban" model="ir.ui.view">
+      <field name="name">to_do_list.view.kanban</field>
+      <field name="model">to_do_list.task</field>
+      <field name="arch" type="xml">
+        <kanban string="Judul" default_group_by="check">
+          <templates>
+            <t t-name="kanban-box">
+              <div><field name="check" /></div>
+              
+              <div><field name="title" /></div>
+              <div><field name="description" /></div>
+              <div><field name="date_creation" /></div>
+            </t>
+          </templates>
+        </kanban>
       </field>
     </record>
     <record id="to_do_list_action" model="ir.actions.act_window">
       <field name="name">to_do_list</field>
-      <field name="res_model">to_do_list.titit</field>
+      <field name="res_model">to_do_list.task</field>
       <field name="view_type">form</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">tree,form,kanban</field>
     </record>
     <menuitem
       id="to_do_list_menu"

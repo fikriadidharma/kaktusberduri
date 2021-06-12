@@ -9,4 +9,5 @@ class Task(models.Model):
     # value = fields.Integer()
     # value2 = fields.Float(compute="_value_pc", store=True)
     description = fields.Text(string='Description')
-    check = fields.Boolean(string='Boolean')
+    check = fields.Boolean(string='Check')
+    date_creation = fields.Date('Created Date', required=True, default=fields.Date.today())
